@@ -34,7 +34,5 @@ class PythonCard(Card):
             "attack-name": "venom",
             "damage": random.uniform(self.att_score * 10 - 1, self.att_score * 10 + 1),
             "energy-used": 100,
-            "special": {
-                "action": "knock"
-            }
+            "action": "knockout"
         }

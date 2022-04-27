@@ -3,6 +3,7 @@ from discord.ext import commands
 
 import utils
 from utils import Constants
+from classes import User
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -18,6 +19,11 @@ async def on_ready():
 async def test(ctx):
     print("hi")
     await ctx.reply("hello")
+
+
+@client.command()
+async def start(ctx):
+    User.new_user()
 
 
 if __name__ == '__main__':

@@ -1,5 +1,12 @@
 class Card:
     def __init__(self, xp=None, hp=None, att_score=None):
+        """
+        To load a card from a JSON file, use Python's **kwargs utility.
+
+        :param xp:
+        :param hp:
+        :param att_score:
+        """
         self.xp = xp
         self.hp = hp
         self.att_score = att_score
@@ -33,3 +40,15 @@ class Card:
 
     def special_attack(self):
         pass
+
+    def serialize(self):
+        """
+        Convert a card's data to a JSON compatible format.
+        :return:
+        """
+
+        return {
+            "xp": self.xp,
+            "hp": self.hp,
+            "att-score": self.att_score
+        }
