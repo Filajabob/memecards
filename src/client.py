@@ -7,7 +7,7 @@ from classes import User
 
 intents = discord.Intents.default()
 intents.message_content = True
-client = commands.Bot(command_prefix="mc ", intents=intents)
+client = commands.Bot(command_prefix="%", intents=intents)
 
 
 @client.event

@@ -46,8 +46,8 @@ class User:
 
             if did in users:
                 raise KeyError("User already exists.")
-            else:
-                self.did = did
-                self.xp = 0
+
+            self.did = did
+            self.xp = 0
 
         return self
