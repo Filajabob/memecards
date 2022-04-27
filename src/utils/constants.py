@@ -1,5 +1,3 @@
-import os
-
-
 class Constants:
-    TOKEN = os.environ['TOKEN']
+    with open("../assets/text/token.txt", 'r') as f:
+        TOKEN = f.read()
