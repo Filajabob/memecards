@@ -2,3 +2,5 @@
 .idea/**
 .env/
 .secrets/
+
+assets/text/token.txt
