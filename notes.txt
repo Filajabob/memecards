@@ -1,0 +1,11 @@
+Attack score (dependant on owned card) (AS): A number
+Attack factor (static) (AF): The AF multiplied by the AS is total damage.
+    Primary attack: 7 is decent, 3 is horrible, 16 is amazing
+    Secondary attack: 5 is decent, 12 is amazing, 2 is bad
+    Special attack: 10 is decent, 4 is horrible, 20 is amazing
+
+Hitpoints (HP): Amount of damage a card  can take until it is out for the game. Common is 100 (bad), meme is 10000 (amazing)
+Energy (E): A measure for how much you can do until you lose. 350 is average, 700 is amazing, 50 is bad. For E usage:
+    Primary attack: 75 is average, 150 is bad, 40 is good
+    Secondary attack: 50 is average, 110 is bad, 20 is good
+    Special attack: 110 is average, 130 is bad, 85 is good, 60 is god-like
