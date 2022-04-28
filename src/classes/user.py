@@ -2,14 +2,14 @@ import json
 
 
 class User:
-    def __init__(self):
-        self.did = None
-        self.cards = []
-        self.xp = None
+    def __init__(self, did, xp, cards):
+        self.did = did
+        self.cards = cards
+        self.xp = xp
 
     def serialize(self, location=None):
         """
-        Serialize the User object into a dictionary. If location is None, the final serialized object will not be save
+        Serialize the User object into a dictionary. If location is None, the final serialized object will not be saved
 
         Parameters:
             location (str): A JSON file.
@@ -38,16 +38,17 @@ class User:
 
         return ser_user
 
-    def new_user(self, did):
-        did = str(did)
 
-        with open("../assets/text/users.json", 'r+') as f:
-            users = json.load(f)
+def new_user(did):
+    did = str(did)
 
-            if did in users:
-                raise KeyError("User already exists.")
+    with open("../assets/text/users.json", 'r+') as f:
+        users = json.load(f)
 
-            self.did = did
-            self.xp = 0
+        if did in users:
+            raise KeyError("User already exists.")
 
-        return self
+        user = User(did, 0, [])
+        user.serialize("../assets/text/users.json")
+
+    return user

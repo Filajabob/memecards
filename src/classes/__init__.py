@@ -1,3 +1,4 @@
 from .abc import Card
-from .cards import *
-from .user import User
+from .user import User, new_user
+
+import classes.cards as cards

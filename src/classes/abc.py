@@ -52,3 +52,6 @@ class Card:
             "hp": self.hp,
             "att-score": self.att_score
         }
+
+    def bio(self):
+        pass
