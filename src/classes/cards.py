@@ -3,6 +3,12 @@ from .abc import Card
 
 
 class PythonCard(Card):
+    def bio(self):
+        return {
+            "backstory": "nice backstory",
+            "description": "a rundown on how good this card is"
+        }
+
     def primary_attack(self):
         """
         Whip your Python's tail at the enemy with a speed feared by many.
@@ -56,7 +62,7 @@ class SpiderCard(Card):
 
         return {
             "attack-name": "kick",
-            "damage": random.uniform(self.att_score * 2 - 1, self.att_score * 2 + 1)
+            "damage": random.uniform(self.att_score * 2 - 1, self.att_score * 2 + 1),
             "energy-used": 75
         }
 
