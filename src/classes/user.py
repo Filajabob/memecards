@@ -1,10 +1,11 @@
 import json
+import classes.cards as cards
 
 
 class User:
-    def __init__(self, did, xp, cards):
+    def __init__(self, did, xp, card_deck):
         self.did = did
-        self.cards = cards
+        self.cards = card_deck
         self.xp = xp
 
     def serialize(self, location=None):
@@ -38,6 +39,10 @@ class User:
 
         return ser_user
 
+    def add_card(self, card):
+        self.cards.append(card)
+        self.serialize("../assets/text/users.json")
+
 
 def new_user(did):
     did = str(did)
@@ -52,3 +57,16 @@ def new_user(did):
         user.serialize("../assets/text/users.json")
 
     return user
+
+
+def load_user(data):
+    user_cards = []
+
+    for _card in data['cards']:
+        card = getattr(cards, _card['species'])
+        del _card['species']
+
+        user_cards.append(card(**_card))
+
+    return User(data['did'], data['xp'], user_cards)
+

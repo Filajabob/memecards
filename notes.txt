@@ -1,4 +1,6 @@
-Attack score (dependant on owned card) (AS): A number
+Attack score (dependant on owned card) (AS): This number is effected by how much attacks the card has done.
+    5 is decent, 10 is amazing, 2 is horrible
+
 Attack factor (static) (AF): The AF multiplied by the AS is total damage.
     Primary attack: 7 is decent, 3 is horrible, 16 is amazing
     Secondary attack: 5 is decent, 12 is amazing, 2 is bad

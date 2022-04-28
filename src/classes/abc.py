@@ -50,8 +50,10 @@ class Card:
         return {
             "xp": self.xp,
             "hp": self.hp,
-            "att-score": self.att_score
+            "att_score": self.att_score,
+            "species": type(self).__name__
         }
 
     def bio(self):
         pass
+

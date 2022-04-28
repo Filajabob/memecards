@@ -29,7 +29,8 @@ async def start(ctx):
         await ctx.reply("you already started you idiot")
         return
 
-    user.cards.append(cards.PythonCard())
+    user.add_card(cards.PythonCard(0, 100, 4))
+    print(user.cards)
     await ctx.reply("Welcome to Meme Cards! You have been gifted a Python to start you on your journey!")
 
 
