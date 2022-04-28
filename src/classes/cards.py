@@ -5,8 +5,12 @@ from .abc import Card
 class PythonCard(Card):
     def bio(self):
         return {
-            "backstory": "nice backstory",
-            "description": "a rundown on how good this card is"
+            "backstory": "Python isn't the python he used to be, but is still feared by many. After his loss against "
+                         "Apollo around 3500 BCE, Python's godly form was "
+                         "destroyed and he was banished... Until now. With magic python is back maybe not in his "
+                         "prime form, but still a ferocious opponent nonetheless.",
+            "description": "Python has trained for millennia and is willing to slaughter his enemies at any cost or "
+                           "die trying."
         }
 
     def primary_attack(self):
@@ -65,4 +69,17 @@ class SpiderCard(Card):
             "damage": random.uniform(self.att_score * 2 - 1, self.att_score * 2 + 1),
             "energy-used": 75
         }
+
+    def special_attack(self):
+        """
+        Webs. Cool.
+        """
+
+        return {
+            "attack-name": "web-attack",
+            "damage": random.uniform(self.att_score * 19 - 1, self.att_score * 19 + 1),
+            "energy-used": 160,
+            "action": "knockout"
+        }
+
 
