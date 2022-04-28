@@ -7,10 +7,9 @@ class PythonCard(Card):
         return {
             "backstory": "Python isn't the python he used to be, but is still feared by many. After his loss against "
                          "Apollo around 3500 BCE, Python's godly form was "
-                         "destroyed and he was banished... Until now. With magic python is back maybe not in his "
+                         "destroyed and he was banished... Until now. With magic, Python is back, maybe not in his "
                          "prime form, but still a ferocious opponent nonetheless.",
-            "description": "Python has trained for millennia and is willing to slaughter his enemies at any cost or "
-                           "die trying."
+            "description": ""
         }
 
     def primary_attack(self):
