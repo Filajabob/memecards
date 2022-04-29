@@ -22,17 +22,31 @@ class Battle:
 
         for i in range(0, 2):
             if attacker == 'c':
-                self.attack = getattr(self.c_active, f"{attack}_attack")()
+                if attack == "primary":
+                    self.attack = self.c_active.primary_attack()
+                elif attack == "secondary":
+                    self.attack = self.c_active.secondary_attack()
+                elif attack == "special":
+                    self.attack = self.c_active.special_attack()
+
+                print(self.attack)
 
                 self.challenger.energy -= self.attack['energy-used']
                 self.d_active.hp -= self.attack['damage']
             elif attacker == 'd':
-                self.attack = getattr(self.d_active, f"{attack}_attack")()
+                if attack == "primary":
+                    self.attack = self.d_active.primary_attack()
+                elif attack == "secondary":
+                    self.attack = self.d_active.secondary_attack()
+                elif attack == "special":
+                    self.attack = self.d_active.special_attack()
 
                 self.defender.energy -= self.attack['energy-used']
                 self.c_active.hp -= self.attack['damage']
             else:
                 raise ValueError(f"Unknown attacker {attacker}, please refer to classes.Battle.rotate.__doc__")
+
+
 
             if self.d_active.hp <= 0:
                 self.defender.hp = None

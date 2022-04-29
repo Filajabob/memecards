@@ -3,10 +3,11 @@ import classes.cards as cards
 
 
 class User:
-    def __init__(self, did, xp, card_deck):
+    def __init__(self, did, xp, card_deck, energy):
         self.did = did
         self.cards = card_deck
         self.xp = xp
+        self.energy = energy
 
     def serialize(self, location=None):
         """
@@ -26,6 +27,7 @@ class User:
         ser_user = {
             "did": self.did,
             "xp": self.xp,
+            "energy": self.energy,
             "cards": ser_cards
         }
 
@@ -53,7 +55,7 @@ def new_user(did):
         if did in users:
             raise KeyError("User already exists.")
 
-        user = User(did, 0, [])
+        user = User(did, 0, [], 100)
         user.serialize("../assets/text/users.json")
 
     return user
@@ -66,7 +68,8 @@ def load_user(data):
         card = getattr(cards, _card['species'])
         del _card['species']
 
+        # TODO: Fix error where instead of loading Card child, it loads the abstract base class Card
         user_cards.append(card(**_card))
 
-    return User(data['did'], data['xp'], user_cards)
+    return User(data['did'], data['xp'], user_cards, data['energy'])
 

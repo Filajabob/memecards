@@ -1,13 +1,29 @@
 {
-    "813548110193754134": {
-        "did": "813548110193754134",
+    "3": {
+        "did": "3",
         "xp": 0,
+        "energy": 100,
         "cards": [
             {
+                "name": "Generic Card Name",
                 "xp": 0,
                 "hp": 100,
-                "att_score": 4,
-                "species": "PythonCard"
+                "att_score": 5,
+                "species": "Card"
+            }
+        ]
+    },
+    "4": {
+        "did": "4",
+        "xp": 0,
+        "energy": 100,
+        "cards": [
+            {
+                "name": "Generic Card Name",
+                "xp": 0,
+                "hp": 100,
+                "att_score": 5,
+                "species": "Card"
             }
         ]
     }
