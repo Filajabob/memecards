@@ -1,6 +1,5 @@
 class Battle:
     def __init__(self, challenger, defender, cdeck, ddeck):
-
         if not len(cdeck) <= 3 or not len(ddeck) <= 3:
             raise ValueError("Active deck cannot contain more than 3 cards.")
 
@@ -9,6 +8,8 @@ class Battle:
 
         self.ddeck = cdeck
         self.cdeck = ddeck
+
+        self.attack = None
 
         self.challenger = challenger
         self.defender = defender
