@@ -3,19 +3,19 @@ import classes.cards as cards
 
 
 class User:
-    def __init__(self, did, xp, card_deck, energy):
+    def __init__(self, did, xp, card_deck):
         self.did = did
         self.cards = card_deck
         self.xp = xp
-        self.energy = energy
 
     def serialize(self, location=None):
         """
         Serialize the User object into a dictionary. If location is None, the final serialized object will not be saved
 
-        :param location: A JSON file.
+        Parameters:
+            location (str): A JSON file.
 
-        :returns: dict
+        Returns: dict
         """
 
         ser_cards = []
@@ -26,9 +26,7 @@ class User:
         ser_user = {
             "did": self.did,
             "xp": self.xp,
-            "energy": self.energy,
             "cards": ser_cards
-
         }
 
         if location is not None:
@@ -55,7 +53,7 @@ def new_user(did):
         if did in users:
             raise KeyError("User already exists.")
 
-        user = User(did, 0, [], 100)
+        user = User(did, 0, [])
         user.serialize("../assets/text/users.json")
 
     return user
@@ -70,5 +68,5 @@ def load_user(data):
 
         user_cards.append(card(**_card))
 
-    return User(data['did'], data['xp'], user_cards, data['energy'])
+    return User(data['did'], data['xp'], user_cards)
 
