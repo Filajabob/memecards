@@ -49,7 +49,6 @@ class Card:
         """
 
         return {
-            "name": self.name,
             "xp": self.xp,
             "hp": self.hp,
             "att_score": self.att_score,
