@@ -6,6 +6,8 @@ class Battle:
 
         if not len(cdeck) <= 3 or not len(ddeck) <= 3:
             raise ValueError("Active deck cannot contain more than 3 cards.")
+        elif len(cdeck) == 0 == len(ddeck):
+            raise ValueError("Decks must have at least one card each.")
 
         self.d_active = None
         self.c_active = None
@@ -27,8 +29,6 @@ class Battle:
         """
         Rotate to the next rotation.
 
-        :param d_attack:
-        :param c_attack:
         :param c_active: The active card index of the challenger.
         :param d_active: The active card index of the defender.
         :param attacker: A char representing which person is attacking. For challenger, input 'c', for defender,
@@ -80,19 +80,38 @@ class Battle:
                 self.cdeck.pop(c_active)
 
             # Too lazy to make it so you can't "go into debt" for energy, maybe will add later
+
+            # Battle End Condition 1: Challenger has 0 or less energy, or has no cards remaining, and the defender
+            # still has 1 or more energy and still has (a) card(s). Winner: Defender
             if (self.challenger.energy <= 0 or len(self.cdeck) == 0) and not (
                     self.defender.energy <= 0 or len(self.ddeck) == 0):
                 self.winner = "defender"
+
+                # Without this line, it would appear that the challenger attacked before dying, and the attack
+                # information would be identical to the challenger's previous attack.
+                self.c_attack = {}
                 break
 
+            # Battle End Condition 2: Same as above, but reversed (replace challenger with defender, and vice versa).
+            # Winner: Challenger
             elif not (self.challenger.energy <= 0 or len(self.cdeck) == 0) and (
                     self.defender.energy <= 0 or len(self.ddeck) == 0):
                 self.winner = "challenger"
+
+                # Without this line, it would appear that the defender attacked before dying, and the attack
+                # information would be identical to the defender's previous attack.
+                self.d_attack = {}
+
                 break
 
+            # Battle End Condition 3: Both parties have run out of energy, or have no cards. Winner: None (tie)
             elif (self.challenger.energy <= 0 or len(self.cdeck) == 0) and (
                     self.defender.energy <= 0 or len(self.cdeck) == 0):
                 self.winner = "tie"
+
+                self.d_attack = {}
+                self.c_attack = {}
+
                 break
 
             # Make sure the other side gets a turn

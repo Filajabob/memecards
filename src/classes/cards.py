@@ -20,7 +20,7 @@ class PythonCard(Card):
         return {
             "attack-name": "tailwhip",
             "damage": random.uniform(self.att_score * 7 - 2, self.att_score * 7 + 2),
-            "energy-used": 60
+            "energy-used": 12 * self.att_score  # First number is the energy factor
         }
 
     def secondary_attack(self):
@@ -31,7 +31,7 @@ class PythonCard(Card):
         return {
             "attack-name": "fard",
             "damage": random.uniform(self.att_score * 6 - 1, self.att_score * 6 + 1),
-            "energy-used": 50
+            "energy-used": 10 * self.att_score
         }
 
     def special_attack(self):
@@ -42,7 +42,7 @@ class PythonCard(Card):
         return {
             "attack-name": "venom",
             "damage": random.uniform(self.att_score * 10 - 1, self.att_score * 10 + 1),
-            "energy-used": 100,
+            "energy-used": 20 * self.att_score,
             "action": "knockout"
         }
 
@@ -55,7 +55,7 @@ class SpiderCard(Card):
         return {
             "attack-name": "pounce",
             "damage": random.uniform(self.att_score * 7 - 1, self.att_score * 7 + 1),
-            "energy-used": 120,
+            "energy-used": 24 * self.att_score,
         }
 
     def secondary_attack(self):
@@ -66,7 +66,7 @@ class SpiderCard(Card):
         return {
             "attack-name": "kick",
             "damage": random.uniform(self.att_score * 2 - 1, self.att_score * 2 + 1),
-            "energy-used": 75
+            "energy-used": 15 * self.att_score
         }
 
     def special_attack(self):
@@ -77,8 +77,6 @@ class SpiderCard(Card):
         return {
             "attack-name": "web-attack",
             "damage": random.uniform(self.att_score * 19 - 1, self.att_score * 19 + 1),
-            "energy-used": 160,
+            "energy-used": 32 * self.att_score,
             "action": "knockout"
         }
-
-
