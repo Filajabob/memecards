@@ -3,11 +3,18 @@ import json
 
 options = ['c', 'd']
 
+# me = classes.new_user("1")
+# me.add_card(classes.cards.PythonCard(0, 0, 5, "Dick"))
+#
+# dummy = classes.new_user("2")
+# dummy.add_card(classes.cards.SpiderCard(0, 0, 5, "8 Dicks"))
+
 with open("../assets/text/users.json", 'r') as f:
     data = json.load(f)
 
-me = classes.load_user(data["4"])
-dummy = classes.load_user(data["3"])
+me = classes.load_user(data["1"])
+dummy = classes.load_user(data["2"])
+
 
 battle = classes.Battle(me, dummy, me.cards, dummy.cards)
 
@@ -25,4 +32,4 @@ while True:
     else:
         raise KeyError("Couldn't find requested card.")
 
-    battle.rotate(0, 0, 'c', "primary")
+    print(battle.rotate(0, 0, 'c', "primary", "primary"))

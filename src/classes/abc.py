@@ -12,7 +12,7 @@ class Card:
         self.att_score = att_score
         self.name = name
 
-        if not xp is None:
+        if xp is not None:
             self.level = xp // 100
 
             if self.level > 100:
