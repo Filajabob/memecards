@@ -9,8 +9,8 @@ class PythonCard(Card):
                          "Apollo around 3500 BCE, Python's godly form was "
                          "destroyed and he was banished... Until now. With magic python is back maybe not in his "
                          "prime form, but still a ferocious opponent nonetheless.",
-            "description": "Python has trained for millennia and is willing to slaughter his enemies at any cost or "
-                           "die trying."
+            "description": ""
+
         }
 
     def primary_attack(self):
@@ -49,6 +49,13 @@ class PythonCard(Card):
 
 
 class SpiderCard(Card):
+    def bio(self):
+        return {
+            "backstory": "This spider has been hiding in the depths ever since arachne's transformation to the spider form."
+                         "Ever since, the spider has fought for Arachne and is now willing to fight for you."
+
+        }
+
     def primary_attack(self):
         """
         Eight legs of strangling power jumping on you is kinda terrifying.
@@ -81,5 +88,12 @@ class SpiderCard(Card):
             "energy-used": 160,
             "action": "knockout"
         }
+
+class BoarCard(Card):
+    def bio(self):
+        return {
+            "backstory": "Im boared"
+        }
+
 
 
