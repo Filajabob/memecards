@@ -1,12 +1,15 @@
 import json
 import classes.cards as cards
+import warnings
 
 
 class User:
-    def __init__(self, did, xp, card_deck):
+    def __init__(self, did, xp, card_deck, energy, stats):
         self.did = did
         self.cards = card_deck
         self.xp = xp
+        self.energy = energy
+        self.stats = stats
 
     def serialize(self, location=None):
         """
@@ -26,7 +29,9 @@ class User:
         ser_user = {
             "did": self.did,
             "xp": self.xp,
-            "cards": ser_cards
+            "energy": self.energy,
+            "cards": ser_cards,
+            "stats": self.stats
         }
 
         if location is not None:
@@ -40,6 +45,9 @@ class User:
         return ser_user
 
     def add_card(self, card):
+        if type(card).__name__ == "Card":
+            warnings.warn("Loading Abstract Base Class instead of a specific species. Attacks will not work.")
+
         self.cards.append(card)
         self.serialize("../assets/text/users.json")
 
@@ -53,7 +61,11 @@ def new_user(did):
         if did in users:
             raise KeyError("User already exists.")
 
-        user = User(did, 0, [])
+        user = User(did, 0, [], 100, {
+            "wins": 0,
+            "losses": 0,
+            "ties": 0
+        })
         user.serialize("../assets/text/users.json")
 
     return user
@@ -68,5 +80,5 @@ def load_user(data):
 
         user_cards.append(card(**_card))
 
-    return User(data['did'], data['xp'], user_cards)
+    return User(data['did'], data['xp'], user_cards, data['energy'], data['stats'])
 

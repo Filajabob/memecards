@@ -7,10 +7,9 @@ class PythonCard(Card):
         return {
             "backstory": "Python isn't the python he used to be, but is still feared by many. After his loss against "
                          "Apollo around 3500 BCE, Python's godly form was "
-                         "destroyed and he was banished... Until now. With magic python is back maybe not in his "
+                         "destroyed and he was banished... Until now. With magic, Python is back, maybe not in his "
                          "prime form, but still a ferocious opponent nonetheless.",
             "description": ""
-
         }
 
     def primary_attack(self):
@@ -21,7 +20,7 @@ class PythonCard(Card):
         return {
             "attack-name": "tailwhip",
             "damage": random.uniform(self.att_score * 7 - 2, self.att_score * 7 + 2),
-            "energy-used": 60
+            "energy-used": 12 * self.att_score  # First number is the energy factor
         }
 
     def secondary_attack(self):
@@ -32,7 +31,7 @@ class PythonCard(Card):
         return {
             "attack-name": "fard",
             "damage": random.uniform(self.att_score * 6 - 1, self.att_score * 6 + 1),
-            "energy-used": 50
+            "energy-used": 10 * self.att_score
         }
 
     def special_attack(self):
@@ -43,19 +42,12 @@ class PythonCard(Card):
         return {
             "attack-name": "venom",
             "damage": random.uniform(self.att_score * 10 - 1, self.att_score * 10 + 1),
-            "energy-used": 100,
+            "energy-used": 20 * self.att_score,
             "action": "knockout"
         }
 
 
 class SpiderCard(Card):
-    def bio(self):
-        return {
-            "backstory": "This spider has been hiding in the depths ever since arachne's transformation to the spider form."
-                         "Ever since, the spider has fought for Arachne and is now willing to fight for you."
-
-        }
-
     def primary_attack(self):
         """
         Eight legs of strangling power jumping on you is kinda terrifying.
@@ -63,7 +55,7 @@ class SpiderCard(Card):
         return {
             "attack-name": "pounce",
             "damage": random.uniform(self.att_score * 7 - 1, self.att_score * 7 + 1),
-            "energy-used": 120,
+            "energy-used": 24 * self.att_score,
         }
 
     def secondary_attack(self):
@@ -74,7 +66,7 @@ class SpiderCard(Card):
         return {
             "attack-name": "kick",
             "damage": random.uniform(self.att_score * 2 - 1, self.att_score * 2 + 1),
-            "energy-used": 75
+            "energy-used": 15 * self.att_score
         }
 
     def special_attack(self):
@@ -85,15 +77,7 @@ class SpiderCard(Card):
         return {
             "attack-name": "web-attack",
             "damage": random.uniform(self.att_score * 19 - 1, self.att_score * 19 + 1),
-            "energy-used": 160,
+            "energy-used": 32 * self.att_score,
             "action": "knockout"
         }
-
-class BoarCard(Card):
-    def bio(self):
-        return {
-            "backstory": "Im boared"
-        }
-
-
 

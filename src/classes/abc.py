@@ -1,17 +1,18 @@
 class Card:
-    def __init__(self, xp=None, hp=None, att_score=None):
+    def __init__(self, xp=None, hp=None, att_score=None, name="Generic Card Name"):
         """
         To load a card from a JSON file, use Python's **kwargs utility.
 
-        :param xp:
-        :param hp:
-        :param att_score:
+        :param xp: Short for "experience"
+        :param hp: Short for "hitpoints", the amount of damage you can take until "dying" for the game.
+        :param att_score: Short for "attack score".
         """
         self.xp = xp
         self.hp = hp
         self.att_score = att_score
+        self.name = name
 
-        if not xp is None:
+        if xp is not None:
             self.level = xp // 100
 
             if self.level > 100:
@@ -44,10 +45,11 @@ class Card:
     def serialize(self):
         """
         Convert a card's data to a JSON compatible format.
-        :return:
+        :return: dict
         """
 
         return {
+            "name": self.name,
             "xp": self.xp,
             "hp": self.hp,
             "att_score": self.att_score,
@@ -56,4 +58,3 @@ class Card:
 
     def bio(self):
         pass
-

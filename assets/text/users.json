@@ -1,14 +1,40 @@
 {
-    "813548110193754134": {
-        "did": "813548110193754134",
+    "1": {
+        "did": "1",
         "xp": 0,
+        "energy": 100,
         "cards": [
             {
+                "name": "Dick",
                 "xp": 0,
-                "hp": 100,
-                "att_score": 4,
+                "hp": 0,
+                "att_score": 5,
                 "species": "PythonCard"
             }
-        ]
+        ],
+        "stats": {
+            "wins": 0,
+            "losses": 0,
+            "ties": 0
+        }
+    },
+    "2": {
+        "did": "2",
+        "xp": 0,
+        "energy": 100,
+        "cards": [
+            {
+                "name": "8 Dicks",
+                "xp": 0,
+                "hp": 0,
+                "att_score": 5,
+                "species": "SpiderCard"
+            }
+        ],
+        "stats": {
+            "wins": 0,
+            "losses": 0,
+            "ties": 0
+        }
     }
 }
