@@ -1,5 +1,6 @@
 import json
 import classes.cards as cards
+import warnings
 
 
 class User:
@@ -42,6 +43,9 @@ class User:
         return ser_user
 
     def add_card(self, card):
+        if type(card).__name__ == "Card":
+            warnings.warn("Loading Abstract Base Class instead of a specific species. Attacks will not work.")
+
         self.cards.append(card)
         self.serialize("../assets/text/users.json")
 

@@ -1,13 +1,6 @@
 import classes
 import json
 
-
-# dummy = classes.new_user("3")
-# dummy.add_card(classes.Card(0, 100, 5))
-#
-# me = classes.new_user("4")
-# me.add_card(classes.Card(0, 100, 5))
-
 options = ['c', 'd']
 
 with open("../assets/text/users.json", 'r') as f:
@@ -29,5 +22,7 @@ while True:
         if me_card == card.name:
             me_card = card
             break
+    else:
+        raise KeyError("Couldn't find requested card.")
 
     battle.rotate(0, 0, 'c', "primary")

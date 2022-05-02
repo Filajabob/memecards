@@ -3,9 +3,9 @@ class Card:
         """
         To load a card from a JSON file, use Python's **kwargs utility.
 
-        :param xp:
-        :param hp:
-        :param att_score:
+        :param xp: Short for "experience"
+        :param hp: Short for "hitpoints", the amount of damage you can take until "dying" for the game.
+        :param att_score: Short for "attack score".
         """
         self.xp = xp
         self.hp = hp
@@ -45,7 +45,7 @@ class Card:
     def serialize(self):
         """
         Convert a card's data to a JSON compatible format.
-        :return:
+        :return: dict
         """
 
         return {

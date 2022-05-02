@@ -9,7 +9,7 @@
                 "xp": 0,
                 "hp": 100,
                 "att_score": 5,
-                "species": "Card"
+                "species": "PythonCard"
             }
         ]
     },
@@ -23,7 +23,7 @@
                 "xp": 0,
                 "hp": 100,
                 "att_score": 5,
-                "species": "Card"
+                "species": "SpiderCard"
             }
         ]
     }

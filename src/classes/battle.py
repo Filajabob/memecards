@@ -13,6 +13,7 @@ class Battle:
 
         self.challenger = challenger
         self.defender = defender
+        self.winner = None
 
         self.rotation_num = 1
 
@@ -45,8 +46,6 @@ class Battle:
                 self.c_active.hp -= self.attack['damage']
             else:
                 raise ValueError(f"Unknown attacker {attacker}, please refer to classes.Battle.rotate.__doc__")
-
-
 
             if self.d_active.hp <= 0:
                 self.defender.hp = None
