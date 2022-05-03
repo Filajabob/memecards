@@ -1,9 +1,9 @@
 from .errors import BattleEnded
+import random
 
 
 class Battle:
     def __init__(self, challenger, defender, cdeck, ddeck, save_results=True):
-
         if not len(cdeck) <= 3 or not len(ddeck) <= 3:
             raise ValueError("Active deck cannot contain more than 3 cards.")
         elif len(cdeck) == 0 == len(ddeck):
@@ -14,6 +14,18 @@ class Battle:
 
         self.ddeck = ddeck
         self.cdeck = cdeck
+
+        # Amount of XP that should be rewarded after the battle
+        self.c_xp = 0
+        self.d_xp = 0
+
+        # Amount of Attack Score that should be rewarded after the battle
+        self.c_att_score = 0
+        self.d_att_score = 0
+
+        # Amount of HP that should be rewarded AFTER the battle
+        self.c_hp = 0
+        self.d_hp = 0
 
         self.attack = None
         self.d_attack = None
@@ -28,6 +40,8 @@ class Battle:
     def rotate(self, c_active, d_active, attacker, c_attack, d_attack):
         """
         Rotate to the next rotation.
+        This function does NOT update stats automatically. However, it does return how much of each stat should be
+        updated when the battle ends. (When self.winner is not None)
 
         :param c_active: The active card index of the challenger.
         :param d_active: The active card index of the defender.
@@ -48,10 +62,22 @@ class Battle:
             if attacker == 'c':
                 if c_attack == "primary":
                     self.attack = self.c_active.primary_attack()
+                    self.c_att_score += round(random.uniform(0.3, 0.7), 2)
+                    self.c_xp += random.randint(2, 4)
+
+                    self.d_hp += random.randint(2, 4)
                 elif c_attack == "secondary":
                     self.attack = self.c_active.secondary_attack()
+                    self.c_att_score += round(random.uniform(0.1, 0.5), 2)
+                    self.c_xp += random.randint(1, 2)
+
+                    self.d_hp += random.randint(1, 2)
                 elif c_attack == "special":
                     self.attack = self.c_active.special_attack()
+                    self.c_att_score += round(random.uniform(1, 1.5), 2)
+                    self.c_xp += random.randint(5, 9)
+
+                    self.d_hp += random.randint(4, 7)
 
                 self.c_attack = self.attack
                 self.challenger.energy -= self.attack['energy-used']
@@ -60,10 +86,22 @@ class Battle:
             elif attacker == 'd':
                 if d_attack == "primary":
                     self.attack = self.d_active.primary_attack()
+                    self.d_att_score += round(random.uniform(0.3, 0.7), 2)
+                    self.d_xp += random.randint(2, 4)
+
+                    self.c_hp += random.randint(2, 4)
                 elif d_attack == "secondary":
                     self.attack = self.d_active.secondary_attack()
+                    self.d_att_score += round(random.uniform(0.1, 0.5), 2)
+                    self.d_xp += random.randint(1, 2)
+
+                    self.c_hp += random.randint(1, 2)
                 elif d_attack == "special":
                     self.attack = self.d_active.special_attack()
+                    self.d_att_score += round(random.uniform(1, 1.5), 2)
+                    self.d_xp += random.randint(5, 9)
+
+                    self.c_hp += random.randint(4, 7)
 
                 self.d_attack = self.attack
                 self.defender.energy -= self.attack['energy-used']
@@ -86,6 +124,7 @@ class Battle:
             if (self.challenger.energy <= 0 or len(self.cdeck) == 0) and not (
                     self.defender.energy <= 0 or len(self.ddeck) == 0):
                 self.winner = "defender"
+                self.d_xp += 20
 
                 # Without this line, it would appear that the challenger attacked before dying, and the attack
                 # information would be identical to the challenger's previous attack.
@@ -97,6 +136,7 @@ class Battle:
             elif not (self.challenger.energy <= 0 or len(self.cdeck) == 0) and (
                     self.defender.energy <= 0 or len(self.ddeck) == 0):
                 self.winner = "challenger"
+                self.c_xp += 20
 
                 # Without this line, it would appear that the defender attacked before dying, and the attack
                 # information would be identical to the defender's previous attack.
@@ -122,20 +162,52 @@ class Battle:
 
         self.rotation_num += 1
 
-        return {
-            "challenger_attack": self.c_attack,
-            "defender_attack": self.d_attack,
-            "winner": self.winner,
-            "energy": {
-                "challenger": self.challenger.energy,
-                "defender": self.defender.energy
-            },
-            "hp": {
-                "challenger": self.c_active.hp,
-                "defender": self.d_active.hp
-            },
-            "decks": {
-                "challenger": self.cdeck,
-                "defender": self.ddeck
+        if self.winner is not None:
+            return {
+                "challenger_attack": self.c_attack,
+                "defender_attack": self.d_attack,
+                "winner": self.winner,
+                "energy": {
+                    "challenger": self.challenger.energy,
+                    "defender": self.defender.energy
+                },
+                "hp": {
+                    "challenger": self.c_active.hp,
+                    "defender": self.d_active.hp
+                },
+                "decks": {
+                    "challenger": self.cdeck,
+                    "defender": self.ddeck
+                }
             }
-        }
+        else:
+            # This return statement should be identical to the above except for stat updates
+            return {
+                "challenger_attack": self.c_attack,
+                "defender_attack": self.d_attack,
+                "winner": self.winner,
+                "energy": {
+                    "challenger": self.challenger.energy,
+                    "defender": self.defender.energy
+                },
+                "hp": {
+                    "challenger": self.c_active.hp,
+                    "defender": self.d_active.hp
+                },
+                "decks": {
+                    "challenger": self.cdeck,
+                    "defender": self.ddeck
+                },
+                "stat_updates": {
+                    "challenger": {
+                        "xp": self.c_xp,
+                        "hp": self.c_hp,
+                        "attack_score": self.c_att_score
+                    },
+                    "defender": {
+                        "xp": self.d_xp,
+                        "hp": self.d_hp,
+                        "attack_score": self.d_att_score
+                    }
+                }
+            }

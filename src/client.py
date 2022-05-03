@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 import utils
-from utils import Constants
+from utils import Constants, prefabs
 from classes import User, new_user, cards
 
 intents = discord.Intents.default()
@@ -19,6 +19,11 @@ async def on_ready():
 async def test(ctx):
     print("hi")
     await ctx.reply("hello")
+
+
+@client.command()
+async def stats(ctx):
+    await ctx.reply(embed=prefabs.stats(ctx.author.id))
 
 
 @client.command()
