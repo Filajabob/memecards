@@ -9,7 +9,8 @@ class PythonCard(Card):
                          "Apollo around 3500 BCE, Python's godly form was "
                          "destroyed and he was banished... Until now. With magic, Python is back, maybe not in his "
                          "prime form, but still a ferocious opponent nonetheless.",
-            "description": ""
+            "description": "With a pretty low energy usage compared to it's attack, it's a good card for beginners. "
+                           "Maybe why it's the starting card... "
         }
 
     def primary_attack(self):
@@ -19,8 +20,8 @@ class PythonCard(Card):
 
         return {
             "attack-name": "tailwhip",
-            "damage": random.uniform(self.att_score * 7 - 2, self.att_score * 7 + 2),
-            "energy-used": 12 * self.att_score  # First number is the energy factor
+            "damage": random.uniform(self.att_score * 4 - 2, self.att_score * 4 + 2),
+            "energy-used": 4.5 * self.att_score  # First number is the energy factor
         }
 
     def secondary_attack(self):
@@ -30,8 +31,8 @@ class PythonCard(Card):
 
         return {
             "attack-name": "fard",
-            "damage": random.uniform(self.att_score * 6 - 1, self.att_score * 6 + 1),
-            "energy-used": 10 * self.att_score
+            "damage": random.uniform(self.att_score * 3 - 1, self.att_score * 3 + 1),
+            "energy-used": 2.75 * self.att_score
         }
 
     def special_attack(self):
@@ -48,6 +49,12 @@ class PythonCard(Card):
 
 
 class SpiderCard(Card):
+    def bio(self):
+        return {
+            "backstory": "",
+            "description": ""
+        }
+
     def primary_attack(self):
         """
         Eight legs of strangling power jumping on you is kinda terrifying.
