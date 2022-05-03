@@ -81,3 +81,85 @@ class SpiderCard(Card):
             "action": "knockout"
         }
 
+
+class GoatCard(Card):
+    def bio(self):
+        return {
+            "backstory": "He's the goat"
+        }
+
+    def primary_attack(self):
+        """
+        Have you ever been rammed by a goat? No? Would you like to?
+        """
+
+        return {
+            "attack-name": "ram",
+            "damage": random.uniform(self.att_score * 13 - 1, self.att_score * 13 + 1),
+            "energy-used": 135
+        }
+
+    def secondary_attack(self):
+        """
+        Damn he got better kicks then Messi.
+        """
+
+        return {
+            "attack-name": "hind-kick",
+            "damage": random.uniform(self.att_score * 5 - 1, self.att_score * 5 + 1),
+            "energy-used": 50
+        }
+
+    def special_attack(self):
+        """
+        Sometimes emotional damage is more painful than a punch
+        """
+
+        return {
+            "attack-name": "disrespect",
+            "damage": random.uniform(self.att_score * 25 - 1, self.att_score * 25 + 1),
+            "energy-used": 150
+        }
+
+
+class StevensDadCard(Card):
+
+    def bio(self):
+        return {
+            "backstory": "He went to school both ways on one foot (allegedly), the other was starting a business"
+                         " (Beijing Corn). He moved to America where he had Steven, also known as 'Failure'."
+        }
+
+    def primary_attack(self):
+        """
+        Nothing beats the slipper. Oh god I'm getting traumatic flashbacks already.
+        """
+
+        return {
+            "attack-name": "slipper",
+            "damage": random.uniform(self.att_score * 8 - 1, self.att_score * 8 + 1),
+            "energy-used": 65
+        }
+
+    def secondary_attack(self):
+        """
+        When I was your age I ...
+        """
+
+        return {
+            "attack-name": "when-i-was-your-age-i",
+            "damage": random.uniform(self.att_score * 3 - 1, self.att_score * 3 + 1),
+            "energy-used": 40
+        }
+
+    def special_attack(self):
+        """
+        *inhales* EEEEEEEEEEEEMOOOOOOOOOOOTTTTTTTTTTTIIOOOOOOOOOOOOOONNNNNNNNNAAAAAAAAAAALLLLLLLLLLLLL DAAAAAAAAAAAAAAMA
+        AAAAAAAGGGGEEEE
+        """
+
+        return {
+            "attack-name": "emotional-damage",
+            "damage": random.uniform(self.att_score * 30 - 1, self.att_score * 30 + 1),
+            "energy-used": 165
+        }
