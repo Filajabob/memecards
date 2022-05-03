@@ -1,14 +1,14 @@
 {
-    "1": {
-        "did": "1",
+    "813548110193754134": {
+        "did": "813548110193754134",
         "xp": 0,
         "energy": 100,
         "cards": [
             {
-                "name": "Dick",
+                "name": "Generic Card Name",
                 "xp": 0,
-                "hp": 0,
-                "att_score": 5,
+                "hp": 100,
+                "att_score": 4,
                 "species": "PythonCard"
             }
         ],
@@ -18,17 +18,17 @@
             "ties": 0
         }
     },
-    "2": {
-        "did": "2",
+    "813544462831190026": {
+        "did": "813544462831190026",
         "xp": 0,
         "energy": 100,
         "cards": [
             {
-                "name": "8 Dicks",
+                "name": "First Card",
                 "xp": 0,
-                "hp": 0,
-                "att_score": 5,
-                "species": "SpiderCard"
+                "hp": 100,
+                "att_score": 4,
+                "species": "PythonCard"
             }
         ],
         "stats": {
