@@ -163,3 +163,26 @@ class StevensDadCard(Card):
             "damage": random.uniform(self.att_score * 30 - 1, self.att_score * 30 + 1),
             "energy-used": 165
         }
+
+class KnightCard(Card):
+
+    def bio(self):
+
+        return {
+            "backstory": "He trained hard as a kid to get here. He's a ferocious fighter to all his enemies."
+
+        }
+
+    def primary_attack(self):
+        """
+        Its more painful than it looks (and it looks very painful)
+        """
+
+        return {
+            "attack-name": "swipe",
+            "damage": random.uniform(self.att_score * 6 - 1, self.att_score * 6 + 1),
+            "energy-used"
+
+        }
+
+
