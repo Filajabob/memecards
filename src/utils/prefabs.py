@@ -4,17 +4,19 @@ from .constants import Constants
 import classes
 
 
-def load_user(self, did, path=Constants.USERS_JSON):
+def load_user(did, path=Constants.USERS_JSON):
+    did = str(did)
+
     with open(path, 'r') as f:
         data = json.load(f)
 
     return classes.load_user(data[did])
 
 
-def stats(did):
+def stats(did, color=discord.Color.dark_blue()):
     did = str(did)
-    user = load_user(Constants.USERS_JSON, did)
-    em = discord.Embed(title="Stats")
+    user = load_user(did, Constants.USERS_JSON)
+    em = discord.Embed(title="Stats", color=color)
 
     # Start with win/loss stats
     em.add_field(name="Wins", value=user.stats["wins"])

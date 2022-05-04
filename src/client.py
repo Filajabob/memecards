@@ -3,7 +3,7 @@ from discord.ext import commands
 
 import utils
 from utils import Constants, prefabs
-from classes import User, new_user, cards
+from classes import User, new_user, cards, load_user
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -26,7 +26,14 @@ async def stats(ctx):
     if not prefabs.user_exists(ctx.author.id):
         await ctx.reply("You haven't started yet. Try doing %start")
     else:
-        await ctx.reply(embed=prefabs.stats(ctx.author.id))
+        user = prefabs.load_user(str(ctx.author.id))
+        await ctx.send(embed=prefabs.stats(ctx.author.id))
+
+        if not user.cards:
+            return
+
+        for card in user.cards:
+            await ctx.send(embed=card.embed())
 
 
 @client.command()

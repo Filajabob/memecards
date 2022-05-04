@@ -17,24 +17,5 @@
             "losses": 0,
             "ties": 0
         }
-    },
-    "813544462831190026": {
-        "did": "813544462831190026",
-        "xp": 0,
-        "energy": 100,
-        "cards": [
-            {
-                "name": "First Card",
-                "xp": 0,
-                "hp": 100,
-                "att_score": 4,
-                "species": "PythonCard"
-            }
-        ],
-        "stats": {
-            "wins": 0,
-            "losses": 0,
-            "ties": 0
-        }
     }
 }
