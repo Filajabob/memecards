@@ -23,7 +23,10 @@ async def test(ctx):
 
 @client.command()
 async def stats(ctx):
-    await ctx.reply(embed=prefabs.stats(ctx.author.id))
+    if not prefabs.user_exists(ctx.author.id):
+        await ctx.reply("You haven't started yet. Try doing %start")
+    else:
+        await ctx.reply(embed=prefabs.stats(ctx.author.id))
 
 
 @client.command()
@@ -34,8 +37,7 @@ async def start(ctx):
         await ctx.reply("you already started you idiot")
         return
 
-    user.add_card(cards.PythonCard(0, 100, 4))
-    print(user.cards)
+    user.add_card(cards.PythonCard(0, 100, 4, "First Card"))
     await ctx.reply("Welcome to Meme Cards! You have been gifted a Python to start you on your journey!")
 
 
