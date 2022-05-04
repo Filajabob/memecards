@@ -1,3 +1,7 @@
+from discord import Embed, Color
+import re
+
+
 class Card:
     def __init__(self, xp=None, hp=None, att_score=None, name="Generic Card Name"):
         """
@@ -58,3 +62,19 @@ class Card:
 
     def bio(self):
         pass
+
+    def embed(self, title=None, description=None, color=Color.dark_green()):
+        if title is None:
+            title = f"{self.name} Stats"
+
+        pattern = re.compile(r'Card$')
+        species = pattern.sub("", type(self).__name__)
+
+        em = Embed(title=title, description=description, color=color)
+        em.add_field(name="Species", value=species)
+        em.add_field(name="XP", value=self.xp)
+        em.add_field(name="Level", value=self.level)
+        em.add_field(name="Rarity", value=self.rarity.title())
+        em.add_field(name="HP", value=self.hp)
+
+        return em
