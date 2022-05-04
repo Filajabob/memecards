@@ -171,10 +171,10 @@ class StevensDadCard(Card):
             "energy-used": 165
         }
 
+
 class KnightCard(Card):
 
     def bio(self):
-
         return {
             "backstory": "He trained hard as a kid to get here. He's a ferocious fighter to all his enemies."
 
@@ -188,8 +188,112 @@ class KnightCard(Card):
         return {
             "attack-name": "swipe",
             "damage": random.uniform(self.att_score * 6 - 1, self.att_score * 6 + 1),
-            "energy-used"
+            "energy-used": 80
 
         }
+
+    def secondary_attack(self):
+        """
+        This is kinda lame tbh
+        """
+
+        return {
+            "attack-name": "knife",
+            "damage": random.uniform(self.att_score * 5 - 1, self.att_score * 5 + 1),
+            "energy-used": 45
+        }
+
+    def special_attack(self):
+        """
+        Wow he can run pretty quick saying that knight armor is very heavy.
+        """
+
+        return {
+            "attack-name": "charge",
+            "damage": random.uniform(self.att_score * 12 - 1, self.att_score * 12 + 1),
+            "energy-used": 120
+        }
+
+
+class GorillaCard(Card):
+    def bio(self):
+        return {
+            "backstory": "The Gorilla came from the forests as a peaceful guy, until one unfortunate day his home was "
+                         "destroyed. Now he is here to fight and avenge the loss of his home."
+
+        }
+
+    def primary_attack(self):
+        """
+        Better than any football player I've ever seen.
+        """
+
+        return {
+            "attack-name": "tackle",
+            "damage": random.uniform(self.att_score * 8 - 1, self.att_score * 8 + 1),
+            "energy-used": 85
+        }
+
+    def secondary_attack(self):
+        """
+        Well he is a twelve time GFC champion
+        """
+
+        return {
+            "attack-name": "punch",
+            "damage": random.uniform(self.att_score * 5 - 1, self.att_score * 5 + 1),
+            "energy-used": 35
+        }
+
+    def special_attack(self):
+        """
+        This makes endless street fighter combos look lame
+        """
+
+        return {
+            "attack-name": "combos",
+            "damage": random.uniform(self.att_score * 6 - 1, self.att_score * 6 + 1),
+            "energy-used": 0
+        }
+
+class SorceressCard(Card):
+    def bio(self):
+        return {
+            "backstory": "A very feared witch that has mastered the arts of magic from 21 years of experience."
+        }
+
+    def primary_attack(self):
+        """
+        That just looks painful...
+        """
+
+        return {
+            "attack-name": "posion-spell",
+            "damage": random.uniform(self.att_score * 5 - 1, self.att_score * 5 + 1),
+            "energy-used": 70
+        }
+
+    def secondary_attack(self):
+        """
+        Why would you do that if you are a literal witch- nevermind.
+        """
+
+        return {
+            "attack-name": "staff",
+            "damage": random.uniform(self.att_score * 4 - 1, self.att_score * 4 + 1),
+            "energy-used": 60
+        }
+
+    def special_attack(self):
+        """
+        oOoOoOoh creepy curse
+        """
+
+        return {
+            "attack-name": "curse",
+            "damage": random.uniform(self.att_score * 26 - 1, self.att_score * 26 + 1),
+            "energy-used": 150
+        }
+
 
 
