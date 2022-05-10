@@ -35,27 +35,34 @@ async def auto_battle(ctx, challenger: discord.User, defender: discord.User):
             self.user = user
 
         async def callback(self, interaction):
+            # For the challenger
             if self.user == 'c':
                 for card in challenger.cards:
                     if card.name == self.label:
                         cdeck.append(card)
                         self.disabled = True
+                        await interaction.response.send_message("Got it.")
                         break
                 else:
                     raise KeyError("Card was not found.")
 
-                if len(cdeck) == 3:
+                # Check if the amount of cards selected for the battle is at the max (3), or all cards owned by the
+                # user have been selected.
+                if len(challenger.cards) == len(cdeck) or len(cdeck) >= 3:
                     self.view.stop()
+
+            # For the defender
             else:
                 for card in defender.cards:
                     if card.name == self.label:
                         ddeck.append(card)
                         self.disabled = True
+                        await interaction.response.send_message("Got it.")
                         break
                 else:
                     raise KeyError("Card was not found.")
 
-                if len(ddeck) == 3:
+                if len(defender.cards) == len(ddeck) or len(ddeck) >= 3:
                     self.view.stop()
 
     class CardSelectView(View):
@@ -84,13 +91,13 @@ async def auto_battle(ctx, challenger: discord.User, defender: discord.User):
     # await _challenger.send("Please select your cards.", view=dview)
 
     await cview.wait()
-    await dview.wait()
+    # await dview.wait()
 
     battle = classes.Battle(challenger, defender, cdeck, ddeck)
 
-    not_over = True
+    over = False
 
-    while not_over:
+    while not over:
         c_active = None
         d_active = None
 
@@ -100,12 +107,13 @@ async def auto_battle(ctx, challenger: discord.User, defender: discord.User):
                 self.label = label
                 self.player = player
 
-            async def callback(self, inter, button):
+            async def callback(self, inter):
                 if self.player == 'c':
                     for card in cdeck:
                         if card.name == self.label:
                             global c_active
                             c_active = card
+                            self.view.stop()
                             break
                     else:
                         raise KeyError("Card was not found.")
@@ -115,6 +123,7 @@ async def auto_battle(ctx, challenger: discord.User, defender: discord.User):
                         if card.name == self.label:
                             global d_active
                             d_active = card
+                            self.view.stop()
                             break
                     else:
                         raise KeyError("Card was not found.")
@@ -138,4 +147,5 @@ async def auto_battle(ctx, challenger: discord.User, defender: discord.User):
         await ctx.send(f"{_challenger.mention}, please select your active card", view=cview)
         await cview.wait()
 
-        battle.rotate()
+        # TODO: Ask the attacker what attack they want to do
+        battle.rotate(c_active, d_active, 'c')
