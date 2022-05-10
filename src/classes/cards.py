@@ -269,7 +269,7 @@ class SorceressCard(Card):
         """
 
         return {
-            "attack-name": "posion-spell",
+            "attack-name": "poison-spell",
             "damage": random.uniform(self.att_score * 5 - 1, self.att_score * 5 + 1),
             "energy-used": 70
         }
@@ -295,6 +295,175 @@ class SorceressCard(Card):
             "damage": random.uniform(self.att_score * 26 - 1, self.att_score * 26 + 1),
             "energy-used": 150
         }
+
+
+class ArcherCard(Card):
+    def bio(self):
+        return {
+            "backstory": "This sharpshooter can hit any shot within viewing distance, a very reliable fighter."
+        }
+
+    def primary_attack(self):
+        """
+        Just using a bow, nothing special here.
+        """
+
+        return {
+            "attack-name": "shooting-bow",
+            "damage": random.uniform(self.att_score * 7 - 1, self.att_score * 7 + 1),
+            "energy-used": 75
+        }
+
+    def secondary_attack(self):
+        """
+        Archers carry knives, right?
+        """
+
+        return {
+            "attack-name": "knife",
+            "damage": random.uniform(self.att_score * 5 - 1, self.att_score * 5 + 1),
+            "energy-used": 50
+        }
+
+    def special_attack(self):
+        """
+        An arrow is already painful enough, but he just HAD to set it on fire.
+        """
+
+        return {
+            "attack-name": "fire-arrow",
+            "damage": random.uniform(self.att_score * 14 - 1, self.att_score * 14 + 1),
+            "energy-used": 95
+        }
+
+
+class OgreCard(Card):
+
+    def bio(self):
+        return {
+            "backstory": "He was feared by the people in the swamp and lived life, until a brave donkey and others "
+                         "had him on a magical adventured where he met the love of his life, Fiona. There, he still "
+                         "kicks butt with Fiona and the donkey"
+        }
+
+    def primary_attack(self):
+        """
+        Boom Boom Pow Smack Pop- oh those are just words. Okay just imagine they are onomatopoeia.
+        """
+
+        return {
+            "attack-name": "melee",
+            "damage": random.uniform(self.att_score * 9 - 1, self.att_score * 9 + 1),
+            "energy-used": 115
+        }
+
+    def secondary_attack(self):
+        """
+        Its easy, its fun, and it scares your disapproving next door neighbours.
+        """
+
+        return {
+            "attack-name": "scream",
+            "damage": random.uniform(self.att_score * 4 - 1, self.att_score * 4 + 1),
+            "energy-used": 35
+        }
+
+    def special_attack(self):
+        """
+        Honestly I would do the same- uh. I didn't say anything carry on.
+        """
+
+        return {
+            "attack-name": "eat",
+            "damage": random.uniform(self.att_score * 22 - 1, self.att_score * 22 + 1),
+            "energy-used": 135
+        }
+
+
+class GoblinCard(Card):
+    def bio(self):
+        return {
+            "backstory": "Being a thief and an outlaw the goblin has always been on the run, learning fighting"
+                         "and stealing techniques better than anyone. "
+        }
+
+    def primary_attack(self):
+        """
+        Wait, doesn't another card already do this? Oh well.
+        """
+
+        return {
+            "attack-name": "knife",
+            "damage": random.uniform(self.att_score * 5 - 1, self.att_score * 5 + 1),
+            "energy-used": 60
+        }
+
+    def secondary_attack(self):
+        """
+        I totally didn't run out of ideas
+        """
+
+        return {
+            "attack-name": "slap",
+            "damage": random.uniform(self.att_score * 6 - 1, self.att_score * 6 + 1),
+            "energy-used": 45
+        }
+
+    def special_attack(self):
+        """
+        Goblins are very known for this, and they are really good at what their known for, which is why the thing their known for is well known.
+        """
+
+        return {
+            #If we can the specail ability will be able to deplete energy
+            "attack-name": "steal",
+            "damage": random.uniform(self.att_score * 7 - 1, self.att_score * 7 + 1),
+            "energy-used": 65
+        }
+
+
+class SniperCard(Card):
+    def bio(self):
+        return {
+            "backstory": "This sharpshooter originally was a hunter who hunted with his dad until "
+                         "he was 18, where he joined the army and became one of the best snipers in the country, having"
+                         "over 670 confirmed kills. He specializes in jungles."
+        }
+
+    def primary_attack(self):
+        """
+        Well he is a sniper don't even try to look surprised.
+        """
+
+        return {
+            "attack-name": "snipe",
+            "damage": random.uniform(self.att_score * 9 - 1, self.att_score * 9 + 1),
+            "energy-used": 40
+        }
+
+    def secondary_attack(self):
+        """
+        He's good with any gun that works.
+        """
+
+        return {
+            "attack-name": "pistol",
+            "damage": random.uniform(self.att_score * 7 - 1, self.att_score * 7 + 1),
+            "energy-used": 35
+        }
+
+    def special_attack(self):
+        """
+        OMG 360 NO-SCOPE HEADSHOT MLG
+        """
+
+        return {
+            "attack-name": "360-no-scope",
+            "damage": random.uniform(self.att_score * 19 - 1, self.att_score * 19 + 1),
+            "energy-used": 125
+        }
+
+
 
 
 
