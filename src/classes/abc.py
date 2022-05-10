@@ -1,5 +1,6 @@
 from discord import Embed, Color
 import re
+from datetime import datetime
 
 
 class Card:
@@ -63,18 +64,22 @@ class Card:
     def bio(self):
         pass
 
-    def embed(self, title=None, description=None, color=Color.dark_green()):
+    def embed(self, title=None, description=None, color=Color.dark_green(), hide_backstory=False):
         if title is None:
             title = f"{self.name} Stats"
 
         pattern = re.compile(r'Card$')
         species = pattern.sub("", type(self).__name__)
 
-        em = Embed(title=title, description=description, color=color)
+        em = Embed(title=title, description=description, color=color, timestamp=datetime.now())
         em.add_field(name="Species", value=species)
-        em.add_field(name="XP", value=self.xp)
-        em.add_field(name="Level", value=self.level)
-        em.add_field(name="Rarity", value=self.rarity.title())
+        em.add_field(name="XP", value=self.xp, inline=False)
+        em.add_field(name="Level", value=self.level, inline=False)
+        em.add_field(name="Rarity", value=self.rarity.title(), inline=False)
         em.add_field(name="HP", value=self.hp)
+        em.add_field(name="Description", value=self.bio()['description'], inline=False)
+
+        if not hide_backstory:
+            em.add_field(name="Backstory", value=self.bio()['backstory'], inline=False)
 
         return em
