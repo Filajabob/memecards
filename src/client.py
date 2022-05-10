@@ -11,6 +11,8 @@ intents.message_content = True
 client = commands.Bot(command_prefix="%", intents=intents)
 
 
+
+
 @client.event
 async def on_ready():
     print("Ready.")
@@ -64,27 +66,27 @@ async def battle(ctx, opponent: discord.User):
 
     request_msg = await ctx.reply(f"Sending a battle request to {opponent.mention}...")
 
-    async def accept_callback(inter):
-        await inter.response.send_message(f"Got it. Here's a magic portal to the battlefield: {ctx.channel.mention}")
-        await request_msg.edit(content=f"{opponent.mention} has accepted. Good luck!")
+    class BattleRequestView(View):
+        @discord.ui.button(label="Accept", style=discord.ButtonStyle.green)
+        async def accept_callback(self, inter, button):
+            await inter.response.edit_message(
+                content=f"Got it. Here's a magic portal to the battlefield: {ctx.channel.mention}", view=None)
+            await request_msg.edit(content=f"{opponent.mention} has accepted. Good luck!")
+            self.stop()
 
-    async def decline_callback(inter):
-        await inter.response.send_message("Got it. Goodbye!")
-        await request_msg.edit(content=f"{opponent.mention} declined.")
+        @discord.ui.button(label="Decline", style=discord.ButtonStyle.red)
+        async def decline_callback(self, inter, button):
+            await inter.response.edit_message(content="Got it. Goodbye!", view=None)
+            await request_msg.edit(content=f"{opponent.mention} declined.")
+            self.stop()
+            return
 
-    accept = Button(label="Accept", style=discord.ButtonStyle.green)
-    decline = Button(label="Decline", style=discord.ButtonStyle.red)
-
-    accept.callback = accept_callback
-    decline.callback = decline_callback
-
-    view = View()
-    view.add_item(accept)
-    view.add_item(decline)
+    view = BattleRequestView()
 
     await opponent.send(f"You have been challenged by {ctx.author.mention} to a battle! "
                         f"Click one of the options below.", view=view)
 
+    await view.wait()
     await utils.auto_battle(ctx, ctx.author, opponent)
 
 

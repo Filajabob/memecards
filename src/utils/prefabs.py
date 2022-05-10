@@ -13,6 +13,22 @@ def load_user(did, path=Constants.USERS_JSON):
     return classes.load_user(data[did])
 
 
+def load_card(species, json_file, did, name):
+    """
+    Quick and easy way to load a card from a JSON file.
+
+    :param species: The species, including "Card" at the end
+    :param json_file: The JSON file being loaded from
+    :param did: The Discord ID of the user
+    :param name: The custom name of the card
+    :return: src.classes.abc.Card
+    """
+    with open(json_file, 'r') as f:
+        data = json.load(f)
+
+    return getattr(classes.cards, species)(**data[str(did)][name])
+
+
 def stats(did, color=discord.Color.dark_blue()):
     did = str(did)
     user = load_user(did, Constants.USERS_JSON)

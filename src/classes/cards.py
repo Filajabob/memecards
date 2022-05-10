@@ -256,6 +256,7 @@ class GorillaCard(Card):
             "energy-used": 0
         }
 
+
 class SorceressCard(Card):
     def bio(self):
         return {

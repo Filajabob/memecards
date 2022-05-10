@@ -1,21 +1,28 @@
-from discord import Embed, Color
-import re
 from datetime import datetime
+import re
+from discord import Embed, Color
+import utils
 
 
 class Card:
     def __init__(self, xp=None, hp=None, att_score=None, name="Generic Card Name"):
         """
+        Abstract Base Class for all Cards used in the game.
+
         To load a card from a JSON file, use Python's **kwargs utility.
 
         :param xp: Short for "experience"
         :param hp: Short for "hitpoints", the amount of damage you can take until "dying" for the game.
         :param att_score: Short for "attack score".
         """
+
         self.xp = xp
         self.hp = hp
         self.att_score = att_score
         self.name = name
+
+        # We are assuming the class inheriting from Card ends with "Card" as it should
+        self.species_name = utils.rchop(type(self).__name__, "Card")
 
         if xp is not None:
             self.level = xp // 100
