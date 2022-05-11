@@ -3,6 +3,18 @@ from discord.ui import Button, View
 import classes
 from .prefabs import load_user, load_card
 
+global c_active
+global d_active
+
+c_active = None
+d_active = None
+
+global c_attack
+global d_attack
+
+c_attack = None
+d_attack = None
+
 
 async def auto_battle(ctx, challenger: discord.User, defender: discord.User):
     # _challenger/_defender is the discord.User, challenger/defender is the src.classes.user.User
@@ -97,10 +109,9 @@ async def auto_battle(ctx, challenger: discord.User, defender: discord.User):
 
     over = False
 
-    while not over:
-        c_active = None
-        d_active = None
 
+
+    while not over:
         class SelectActiveButton(Button):
             def __init__(self, label, player):
                 super().__init__(label=label)
@@ -141,11 +152,52 @@ async def auto_battle(ctx, challenger: discord.User, defender: discord.User):
                         button = SelectActiveButton(card.name, player)
                         self.add_item(button)
 
+        class AttackSelectButton(Button):
+            def __init__(self, label, player):
+                super().__init__(label=label)
+                self.label = label
+                self.player = player
+
+            async def callback(self, inter):
+                if self.player == 'c':
+                    if self.label.lower() == "primary":
+                        c_attack = "primary"
+                    elif self.label.lower() == "secondary":
+                        c_attack = "secondary"
+                    elif self.label.lower() == "special":
+                        c_attack = "special"
+                    else:
+                        raise ValueError("Button label is not a valid attack type (primary, secondary, or special)")
+                elif self.player == 'd':
+
+                    if self.label.lower() == "primary":
+                        d_attack = "primary"
+                    elif self.label.lower() == "secondary":
+                        d_attack = "secondary"
+                    elif self.label.lower() == "special":
+                        d_attack = "special"
+                    else:
+                        raise ValueError("Button label is not a valid attack type (primary, secondary, or special)")
+                else:
+                    raise ValueError("Player is not 'c' or 'd'")
+
         cview = SelectActiveView('c')
         dview = SelectActiveView('d')
 
         await ctx.send(f"{_challenger.mention}, please select your active card", view=cview)
         await cview.wait()
+        # Uncomment when doing full test of battles
+        # await ctx.send(f"{_defender.mention}, please select your active card", view=dview)
+        # await dview.wait()
 
-        # TODO: Ask the attacker what attack they want to do
-        battle.rotate(c_active, d_active, 'c')
+        cview = View()
+        cview.add_item(AttackSelectButton("Primary", 'c'))
+        cview.add_item(AttackSelectButton("Secondary", 'c'))
+        cview.add_item(AttackSelectButton("Special", 'c'))
+
+        dview = View()
+        dview.add_item(AttackSelectButton("Primary", 'd'))
+        dview.add_item(AttackSelectButton("Secondary", 'd'))
+        dview.add_item(AttackSelectButton("Special", 'd'))
+
+        battle.rotate(cdeck.index(c_active), ddeck.index(d_active), 'c', c_attack, d_attack)
